@@ -5,7 +5,7 @@ function password() {
   let passwordScreen = document.getElementById("passwordFirsth").value;
   let passwordEnd = document.getElementById("passwordEnd").value;
 
-  if (passwordScreen == 13) {
+  if (passwordScreen == 10000010) {
     document.querySelector(".password").style.display = "none";
     document.querySelector(".windows").style.display = "block";
   }
