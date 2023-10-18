@@ -5,11 +5,11 @@ const c = canvas.getContext("2d");
 const squareArea = 88;
 let frameEnemy = 0;
 
-canvas.width = 1024;
-canvas.height = 576;
+canvas.width = 1180;
+canvas.height = 720;
 
 c.fillStyle = "#18215D";
-c.fillRect(0, 0, 1024, 576);
+c.fillRect(0, 0, canvas.width, canvas.height);
 
 const imgPlayer = new Image();
 imgPlayer.src = "./assets/playerDown.png";
