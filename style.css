@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Press Start 2P", cursive;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #18215d;
+}
+canvas {
+  cursor: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 6px solid #acacac;
+}
+.content {
+  display: flex;
+}
+
+.telaConversa {
+  width: 100vw;
+  border: 1vw solid rgb(17, 17, 17);
+  background-color: #252525;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 3vw 5vw 5vw 5vw;
+  display: none;
+  color: #fff;
+}
+
+.enter {
+  width: 64px;
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+}
+
+.dialogo {
+  letter-spacing: 1px;
+  line-height: 25px;
+}
+
+.book {
+  z-index: 99;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 80%;
+  background-color: #252525;
+  border: 10px solid black;
+  display: none;
+}
+
+.btns-book {
+  width: 100%;
+  height: 10%;
+}
+
+.btns-book > button {
+  width: 50%;
+  border: none;
+  height: 100%;
+}
+
+.area-text-book {
+  width: 100%;
+  height: 90%;
+  font-size: 1rem;
+}
+
+.menu {
+  padding: 3vw;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  display: none;
+}
+
+.text-player {
+  padding: 3vw;
+  width: 100%;
+  height: 100%;
+}
+
+.screen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 80%;
+  background-color: #536c81;
+  border: 10px solid black;
+  display: none;
+}
+
+.password {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.password > button {
+  width: 20%;
+  height: 10%;
+}
+
+.windows {
+  background-image: url(./assets/peakpx.jpg);
+  background-size: cover;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  color: #fff;
+  display: none;
+}
+
+.questions {
+  width: 10%;
+  padding: 0.5%;
+  height: auto;
+  margin: 10px;
+  text-align: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.questions:hover {
+  background-color: #e7e7e781;
+}
+
+.questions > img {
+  width: 80%;
+}
+
+.charad-container {
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  display: none;
+}
+
+.header {
+  text-align: center;
+  width: 5%;
+  padding: 0.6rem 0;
+  background-color: #b10000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.content-charad {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.content-charad > button {
+  padding: 2rem 4rem;
+}
+
+.content-questions {
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  padding: 1rem;
+  overflow-y: scroll;
+  display: none;
+}
+
+.content-questions > h1,
+.menu > h1 {
+  margin: 3rem 1rem;
+  text-align: center;
+  color: #fff;
+}
+
+.content-questions > h3,
+.menu > h2 {
+  font-size: 1rem;
+  margin: 1rem;
+  color: #c4a6c7;
+}
+
+.content-questions > p,
+.menu > p {
+  font-size: 1rem;
+  margin: 0.5rem;
+  color: #fff;
+}
+
+.active {
+  display: block;
+}
+
+.close {
+  position: fixed;
+  bottom: 0;
+  width: 4rem;
+  height: 2rem;
+  text-align: center;
+  background-color: #252525;
+  color: #fff;
+}
+
+.congratulations {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BRs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Code Hunt</title>
+  </head>
+  <body>
+    <div class="content">
+      <canvas></canvas>
+      <div class="telaConversa">
+        <span class="dialogo">Texto mensagems</span>
+        <img src="./assets/enter-button-icon.svg" alt="" class="enter" />
+      </div>
+    </div>
+    <div class="book">
+      <div class="btns-book">
+        <button onclick="menu()">Menu</button
+        ><button onclick="textarea()">Anotações</button>
+      </div>
+      <div class="area-text-book">
+        <div class="menu">
+          <h1>Como o jogo funciona: Siga as Instruções</h1>
+          <h2>Controles de Movimento:</h2>
+          <p>
+            Utilize as teclas "W", "A", "S" e "D" para mover seu personagem pelo
+            ambiente virtual. Explore cada canto e recanto em busca de pistas e
+            desafios.
+          </p>
+          <h2>Desvendando a Senha:</h2>
+          <p>
+            Seu primeiro objetivo é encontrar pistas que levarão à senha do
+            computador. Fique atento a qualquer coisa fora do comum, documentos,
+            notas ou objetos que possam conter dicas importantes. Quando
+            encontrar pistas, examine-as minuciosamente e tente determinar a
+            senha.
+          </p>
+          <h2>Resolvendo Questões:</h2>
+          <p>
+            À medida que você avança, encontrará questões desafiadoras que
+            fornecerão mais informações sobre o mistério do computador. Resolva
+            essas questões para obter códigos e informações cruciais.
+          </p>
+          <h2>O Código Final:</h2>
+          <p>
+            Após coletar pistas, resolver quebra-cabeças e descobrir informações
+            cruciais, você estará pronto para inserir o código final no
+            computador. Se todas as pistas e informações forem usadas
+            corretamente, o computador será desbloqueado e você completará o
+            jogo.
+          </p>
+        </div>
+        <textarea
+          name="text-player"
+          id="text-player"
+          class="text-player"
+          cols="10"
+          placeholder="Faça aqui suas anotações!!!"
+        ></textarea>
+      </div>
+    </div>
+    <div class="screen">
+      <button onclick="sair()" class="close">Sair</button>
+      <div class="password">
+        <h1>Digite a Senha</h1>
+        <input type="password" id="passwordFirsth" />
+        <button onclick="password()">Entrar</button>
+      </div>
+      <div class="windows">
+        <div class="questions" onclick="questions()">
+          <img src="/assets/Blank_Folder_23582.png" alt="" />
+          <p>Questões</p>
+        </div>
+        <div class="questions" onclick="passwordEnd()">
+          <img src="/assets/Blank_Folder_23582.png" alt="" />
+          <p>1010</p>
+        </div>
+        <div class="content-questions">
+          <div class="header" onclick="questions()">X</div>
+          <h1>Anote as alternativas corretas de cada pergunta</h1>
+          <h3>Qual dos seguintes não é um tipo de dados em C++?</h3>
+          <p>a) int</p>
+          <p>b) float</p>
+          <p>c) string</p>
+          <p>d) char</p>
+          <h3>O que é a sigla "HTML" em desenvolvimento web?</h3>
+          <p>a) High-Level Text Markup Language</p>
+          <p>b) Hyper Transfer Markup Language</p>
+          <p>c) Hypertext Markup Language</p>
+          <p>d) Hyper Tool Markup Language</p>
+          <h3>
+            Qual é a linguagem de programação amplamente usada para desenvolver
+            aplicativos móveis para dispositivos iOS?
+          </h3>
+          <p>a) Android</p>
+          <p>b) Java</p>
+          <p>c) Swift</p>
+          <p>d) C#</p>
+          <h3>O que é um "loop for" em programação?</h3>
+          <p>a) Uma estrutura de decisão</p>
+          <p>b) Uma função que realiza cálculos matemáticos</p>
+          <p>c) Uma estrutura de repetição</p>
+          <p>d) Um tipo de operador lógico</p>
+          <h3>
+            O que é a integração contínua (CI) no desenvolvimento de software?
+          </h3>
+          <p>a) Uma técnica para testar manualmente o código</p>
+          <p>b) Um processo para escrever código em partes pequenas</p>
+          <p>
+            c) Um método de automatização de compilação e testes de código de
+            forma regular e contínua
+          </p>
+          <p>d) Uma técnica para compactar arquivos de código-fonte</p>
+        </div>
+        <div class="charad-container">
+          <div class="header" onclick="passwordEnd()">X</div>
+          <div class="content-charad">
+            <h1>Qual é a palavra chave?</h1>
+            <input type="password" id="passwordEnd" />
+            <button onclick="password()">Enviar</button>
+          </div>
+        </div>
+      </div>
+      <div class="congratulations">
+        Parabéns <br />
+        Você desbloqueou a saída
+      </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="interaction.js"></script>
+    <script src="mechanics.js"></script>
+  </body>
+</html>
