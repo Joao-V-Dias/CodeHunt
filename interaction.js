@@ -1,5 +1,25 @@
 let numDialogo = 0;
 const dialogo = document.querySelector(".dialogo");
+let checksDoor = false;
+
+const scrollingContent = document.querySelector(".end");
+
+function scrollDown() {
+  if (document.querySelector(".end").style.display == "block") {
+    scrollingContent.scrollTop += 1;
+  }
+}
+
+setInterval(scrollDown, 50);
+
+function credit() {
+  document.querySelector(".credit").classList.toggle("active");
+}
+
+function play() {
+  document.querySelector(".home").style.display = "none";
+  document.querySelector("canvas").style.display = "block";
+}
 
 function password() {
   let passwordScreen = document.getElementById("passwordFirsth").value;
@@ -12,6 +32,7 @@ function password() {
   if (passwordEnd == "ccccc") {
     document.querySelector(".windows").style.display = "none";
     document.querySelector(".congratulations").style.display = "flex";
+    checksDoor = true;
   }
 }
 
@@ -77,5 +98,8 @@ window.addEventListener("keydown", function (event) {
   if (event.keyCode === 89) {
     console.log("abrir menu");
     document.querySelector(".book").classList.toggle("active");
+  }
+  if (event.keyCode === 77) {
+    document.querySelector(".mapa").classList.toggle("active");
   }
 });

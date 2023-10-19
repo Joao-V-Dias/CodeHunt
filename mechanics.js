@@ -24,7 +24,7 @@ class Boundary {
   }
 
   draw() {
-    c.fillStyle = "rgba(255, 255, 255, 0)";
+    c.fillStyle = "rgba(255, 0, 0, 0)";
     c.fillRect(this.position.x, this.position.y, squareArea, squareArea);
   }
 }
@@ -57,6 +57,9 @@ class Sprite {
   draw() {
     c.drawImage(map, this.position.x, this.position.y);
   }
+  drawDoor() {
+    c.drawImage(imgDoor, this.position.x, this.position.y);
+  }
 }
 
 const mapCollision = [];
@@ -67,10 +70,16 @@ for (let i = 0; i < collisions.length; i += 40) {
 const boundaries = [];
 const taskbinary = [];
 const charade = [];
+const door = [];
 
 mapCollision.forEach((row, i) => {
   row.forEach((character, j) => {
-    if (character == "97" || character == "96" || character == "93") {
+    if (
+      character == "97" ||
+      character == "96" ||
+      character == "93" ||
+      character == "94"
+    ) {
       boundaries.push(
         new Boundary({
           position: {
@@ -100,6 +109,16 @@ mapCollision.forEach((row, i) => {
         })
       );
     }
+    if (character == "94") {
+      door.push(
+        new Boundary({
+          position: {
+            x: j * 88 + 390,
+            y: i * 88 + 0,
+          },
+        })
+      );
+    }
   });
 });
 
@@ -109,7 +128,17 @@ mapCollision.forEach((row, i) => {
 const map = new Image();
 map.src = "./assets/mapa.png";
 
+const imgDoor = new Image();
+imgDoor.src = "./assets/door.png";
+
 const background = new Sprite({
+  position: {
+    x: 390,
+    y: 0,
+  },
+});
+
+const openDoor = new Sprite({
   position: {
     x: 390,
     y: 0,
@@ -183,13 +212,28 @@ function mudarFrameY() {
   }
 }
 
-const movement = [background];
+const movement = [background, openDoor];
 
 function move() {
   //////////////
   //draw image//
   //////////////
   background.draw();
+  if (checksDoor) {
+    openDoor.drawDoor();
+    for (let i = 0; i < door.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: door[i].position.x,
+            y: door[i].position.y + 5,
+          },
+        })
+      ) {
+        document.querySelector(".end").style.display = "block";
+      }
+    }
+  }
   boundaries.forEach((boundary) => {
     boundary.draw();
   });
@@ -199,41 +243,43 @@ function move() {
   charade.forEach((boundary) => {
     boundary.draw();
   });
+  door.forEach((boundary) => {
+    boundary.draw();
+  });
+
   player.draw();
 
   let check = true;
   if (keys.w.pressed && lastKey === "w") {
+    for (let i = 0; i < taskbinary.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: taskbinary[i].position.x,
+            y: taskbinary[i].position.y + 5,
+          },
+        })
+      ) {
+        console.log("tasktarefa");
+        numDialogo = 0;
+        gettaskbinery(taskbinary[i]);
+      }
+    }
+    for (let i = 0; i < charade.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: charade[i].position.x,
+            y: charade[i].position.y + 5,
+          },
+        })
+      ) {
+        console.log("charada");
+        document.querySelector(".screen").style.display = "block";
+      }
+    }
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
-
-      for (let i = 0; i < taskbinary.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: taskbinary[i].position.x,
-              y: taskbinary[i].position.y + 5,
-            },
-          })
-        ) {
-          console.log("tasktarefa");
-          numDialogo = 0;
-          gettaskbinery(taskbinary[i]);
-        }
-      }
-      for (let i = 0; i < charade.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: charade[i].position.x,
-              y: charade[i].position.y + 5,
-            },
-          })
-        ) {
-          console.log("charada");
-          document.querySelector(".screen").style.display = "block";
-        }
-      }
-
       if (
         verificaCollision(player, {
           position: {
@@ -260,40 +306,42 @@ function move() {
       charade.forEach((boundary) => {
         boundary.position.y += 5;
       });
+      door.forEach((boundary) => {
+        boundary.position.y += 5;
+      });
       mudarFrameY();
     }
   } else if (keys.a.pressed && lastKey === "a") {
+    for (let i = 0; i < taskbinary.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: taskbinary[i].position.x + 5,
+            y: taskbinary[i].position.y,
+          },
+        })
+      ) {
+        console.log("tasktarefa");
+        numDialogo = 0;
+        gettaskbinery(taskbinary[i]);
+      }
+    }
+
+    for (let i = 0; i < charade.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: charade[i].position.x + 5,
+            y: charade[i].position.y,
+          },
+        })
+      ) {
+        console.log("charada");
+        document.querySelector(".screen").style.display = "block";
+      }
+    }
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
-
-      for (let i = 0; i < taskbinary.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: taskbinary[i].position.x + 5,
-              y: taskbinary[i].position.y,
-            },
-          })
-        ) {
-          console.log("tasktarefa");
-          numDialogo = 0;
-          gettaskbinery(taskbinary[i]);
-        }
-      }
-
-      for (let i = 0; i < charade.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: charade[i].position.x + 5,
-              y: charade[i].position.y,
-            },
-          })
-        ) {
-          console.log("charada");
-          document.querySelector(".screen").style.display = "block";
-        }
-      }
 
       if (
         verificaCollision(player, {
@@ -321,40 +369,42 @@ function move() {
       charade.forEach((boundary) => {
         boundary.position.x += 5;
       });
+      door.forEach((boundary) => {
+        boundary.position.x += 5;
+      });
       mudarFrameX();
     }
   } else if (keys.s.pressed && lastKey === "s") {
+    for (let i = 0; i < taskbinary.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: taskbinary[i].position.x,
+            y: taskbinary[i].position.y - 5,
+          },
+        })
+      ) {
+        console.log("tasktarefa");
+        numDialogo = 0;
+        gettaskbinery(taskbinary[i]);
+      }
+    }
+
+    for (let i = 0; i < charade.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: charade[i].position.x,
+            y: charade[i].position.y - 5,
+          },
+        })
+      ) {
+        console.log("charada");
+        document.querySelector(".screen").style.display = "block";
+      }
+    }
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
-
-      for (let i = 0; i < taskbinary.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: taskbinary[i].position.x,
-              y: taskbinary[i].position.y - 5,
-            },
-          })
-        ) {
-          console.log("tasktarefa");
-          numDialogo = 0;
-          gettaskbinery(taskbinary[i]);
-        }
-      }
-
-      for (let i = 0; i < charade.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: charade[i].position.x,
-              y: charade[i].position.y - 5,
-            },
-          })
-        ) {
-          console.log("charada");
-          document.querySelector(".screen").style.display = "block";
-        }
-      }
 
       if (
         verificaCollision(player, {
@@ -382,40 +432,42 @@ function move() {
       charade.forEach((boundary) => {
         boundary.position.y -= 5;
       });
+      door.forEach((boundary) => {
+        boundary.position.y -= 5;
+      });
       mudarFrameY();
     }
   } else if (keys.d.pressed && lastKey === "d") {
+    for (let i = 0; i < taskbinary.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: taskbinary[i].position.x - 5,
+            y: taskbinary[i].position.y,
+          },
+        })
+      ) {
+        console.log("tasktarefa");
+        numDialogo = 0;
+        gettaskbinery(taskbinary[i]);
+      }
+    }
+
+    for (let i = 0; i < charade.length; i++) {
+      if (
+        verificaCollision(player, {
+          position: {
+            x: charade[i].position.x - 5,
+            y: charade[i].position.y,
+          },
+        })
+      ) {
+        console.log("charada");
+        document.querySelector(".screen").style.display = "block";
+      }
+    }
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
-
-      for (let i = 0; i < taskbinary.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: taskbinary[i].position.x - 5,
-              y: taskbinary[i].position.y,
-            },
-          })
-        ) {
-          console.log("tasktarefa");
-          numDialogo = 0;
-          gettaskbinery(taskbinary[i]);
-        }
-      }
-
-      for (let i = 0; i < charade.length; i++) {
-        if (
-          verificaCollision(player, {
-            position: {
-              x: charade[i].position.x - 5,
-              y: charade[i].position.y,
-            },
-          })
-        ) {
-          console.log("charada");
-          document.querySelector(".screen").style.display = "block";
-        }
-      }
 
       if (
         verificaCollision(player, {
@@ -443,6 +495,9 @@ function move() {
       charade.forEach((boundary) => {
         boundary.position.x -= 5;
       });
+      door.forEach((boundary) => {
+        boundary.position.x -= 5;
+      });
       mudarFrameX();
     }
   }
@@ -459,7 +514,8 @@ move();
 window.addEventListener("keydown", (click) => {
   if (
     document.querySelector(".book").style.display != "block" &&
-    document.querySelector(".screen").style.display != "block"
+    document.querySelector(".screen").style.display != "block" &&
+    document.querySelector(".home").style.display != "block"
   ) {
     switch (click.keyCode) {
       case 87:

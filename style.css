@@ -13,6 +13,66 @@ body {
   overflow: hidden;
   background-color: #18215d;
 }
+
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #000000;
+  background-image: url(./assets/home.png);
+  background-size: cover;
+}
+
+.home > h1 {
+  color: #bf53c9;
+  font-size: 5rem;
+  text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.bts-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btns-home {
+  margin-bottom: 0.5rem;
+  width: 30vw;
+  height: 5vw;
+  cursor: pointer;
+  background-color: #9845a0;
+  color: #fff;
+  border: 2px solid #bf53c9;
+}
+
+.btns-home:hover {
+  scale: 1.05;
+}
+
+#developer {
+  transform: rotate(25deg);
+  color: #fff;
+  position: fixed;
+  left: 50%;
+  animation: scale 2s infinite;
+}
+
+@keyframes scale {
+  0% {
+    font-size: 1rem;
+  }
+  50% {
+    font-size: 1.1rem;
+  }
+  100% {
+    font-size: 1rem;
+  }
+}
+
 canvas {
   cursor: none;
   position: absolute;
@@ -20,6 +80,7 @@ canvas {
   top: 50%;
   transform: translate(-50%, -50%);
   border: 6px solid #acacac;
+  display: none;
 }
 .content {
   display: flex;
@@ -27,8 +88,8 @@ canvas {
 
 .telaConversa {
   width: 100vw;
-  border: 1vw solid rgb(17, 17, 17);
-  background-color: #252525;
+  border: 1vw solid #121946;
+  background-color: #18215d;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -79,12 +140,51 @@ canvas {
   font-size: 1rem;
 }
 
+.credit {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background-color: #bf53c9;
+  border: 3px solid #9845a0;
+  text-align: center;
+  padding: 1rem;
+  display: none;
+}
+
+.credit > h1 {
+  margin: 3rem;
+}
+
+.credit > p {
+  margin: 1rem;
+}
+
+.credit > button {
+  width: 20%;
+  height: 10%;
+  background-color: #542858;
+  color: #fff;
+  cursor: pointer;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .menu {
   padding: 3vw;
   width: 100%;
   height: 100%;
   overflow-y: scroll;
   display: none;
+}
+
+input {
+  height: 2rem;
+  text-align: center;
 }
 
 .text-player {
@@ -128,6 +228,59 @@ canvas {
   background-color: #252525;
   color: #fff;
   display: none;
+}
+
+.end {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: fixed;
+  display: none;
+  letter-spacing: 0.2rem;
+  font-weight: 400;
+  color: #fff;
+  background-color: #121946;
+  overflow: hidden;
+  line-height: 2rem;
+}
+
+@keyframes end {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.mapa {
+  z-index: 999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: auto;
+  border: 3px solid #542858;
+  display: none;
+}
+
+.mapa > img {
+  width: 100%;
+}
+
+.end > p {
+  width: 40%;
+  margin: auto;
+}
+
+.endtoend {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .questions {
